@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: NPC
   m_EditorClassIdentifier: 
   actor: {fileID: 0}
-  speakerSprite: {fileID: -6826285529842234056, guid: d50ad904878127a4fbbfaa855c34336d, type: 3}
-  sentence: Oi, Meu Chapa!
-  dialogues: []
+  speakerSprite: {fileID: 0}
+  sentence: 
+  dialogues:
+  - actorName: 
+    profile: {fileID: 0}
+    sentence:
+      english: 
+      portuguese: Oi, Meu Chapa!
+      spanish: 
