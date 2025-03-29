@@ -22,3 +22,9 @@ MonoBehaviour:
       english: 
       portuguese: Oi, Meu Chapa!
       spanish: 
+  - actorName: 
+    profile: {fileID: 0}
+    sentence:
+      english: 
+      portuguese: ola meu chapa
+      spanish: 

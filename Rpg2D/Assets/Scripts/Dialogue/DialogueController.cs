@@ -18,6 +18,13 @@ public class DialogueController : MonoBehaviour
     private int index;
     private string[] sentences;
 
+    public static DialogueController instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
 
 
     void Start()
