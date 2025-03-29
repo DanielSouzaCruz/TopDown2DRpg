@@ -19,12 +19,12 @@ MonoBehaviour:
   - actorName: 
     profile: {fileID: 0}
     sentence:
-      english: 
+      english: Hi, my brother
       portuguese: Oi, Meu Chapa!
-      spanish: 
+      spanish: Holla, irmano
   - actorName: 
     profile: {fileID: 0}
     sentence:
-      english: 
+      english: Hello, my bro
       portuguese: ola meu chapa
-      spanish: 
+      spanish: Holla, mi mano
