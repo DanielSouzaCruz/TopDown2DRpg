@@ -59,6 +59,11 @@ public class PlayerAnim : MonoBehaviour
         {
             anim.SetInteger("Transition", 4);
         }
+
+        if (player.IsWatering)
+        {
+            anim.SetInteger("Transition", 5);
+        }
     }
 
     void OnRun()

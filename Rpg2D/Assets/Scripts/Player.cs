@@ -14,9 +14,11 @@ public class Player : MonoBehaviour
     private bool _isRolling;
     private bool _isCutting;
     private bool _isDigging;
+    private bool _isWatering;
     private int handlingObject;
 
     private Rigidbody2D rig;
+    private PlayerItems playerItems;
 
     public Vector2 direction
     {
@@ -38,10 +40,12 @@ public class Player : MonoBehaviour
 
     public bool IsCutting { get => _isCutting; set => _isCutting = value; }
     public bool IsDigging { get => _isDigging; set => _isDigging = value; }
+    public bool IsWatering { get => _isWatering; set => _isWatering = value; }
 
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        playerItems = GetComponent<PlayerItems>();
         initialSpeed = speed;
     }
 
@@ -57,11 +61,17 @@ public class Player : MonoBehaviour
             handlingObject = 1;
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            handlingObject = 2;
+        }
+
         OnInput();
         OnRun();
         OnRoll();
         OnCut();
         OnDig();
+        OnWatering();
     }
 
     private void FixedUpdate()
@@ -110,7 +120,7 @@ public class Player : MonoBehaviour
 
     void OnCut()
     {
-        if(handlingObject == 0)
+        if (handlingObject == 0)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -123,12 +133,12 @@ public class Player : MonoBehaviour
                 speed = initialSpeed;
             }
         }
-        
+
     }
 
     void OnDig()
     {
-        if(handlingObject == 1)
+        if (handlingObject == 1)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -141,7 +151,30 @@ public class Player : MonoBehaviour
                 speed = initialSpeed;
             }
         }
-        
+
+    }
+
+    void OnWatering()
+    {
+        if (handlingObject == 2)
+        {
+            if (Input.GetMouseButtonDown(0) && playerItems.currentWater > 0)
+            {
+                IsWatering = true;
+                speed = 0;
+            }
+            if (Input.GetMouseButtonUp(0) || playerItems.currentWater < 0)
+            {
+                IsWatering = false;
+                speed = initialSpeed;
+            }
+
+            if (IsWatering)
+            {
+                playerItems.currentWater -= 0.01f;
+            }
+        }
+
     }
 
     #endregion
