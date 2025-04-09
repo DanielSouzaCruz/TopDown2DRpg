@@ -36274,18 +36274,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1103875440, guid: a4143e2c4a1012e479cd68db7b171a74, type: 3}
-      propertyPath: woodPrefab
-      value: 
-      objectReference: {fileID: 4454166416099489550, guid: 846ff419b009f124fa0e90b1ce4931ce, type: 3}
-    - target: {fileID: 1103875440, guid: a4143e2c4a1012e479cd68db7b171a74, type: 3}
-      propertyPath: life
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1103875440, guid: a4143e2c4a1012e479cd68db7b171a74, type: 3}
-      propertyPath: woodAmount
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4046280342228075897, guid: a4143e2c4a1012e479cd68db7b171a74, type: 3}
       propertyPath: m_Name
       value: Tree
