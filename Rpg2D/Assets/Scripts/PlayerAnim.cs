@@ -30,7 +30,8 @@ public class PlayerAnim : MonoBehaviour
             {
                 anim.SetTrigger("isRoll");
 
-            } else
+            }
+            else
             {
                 anim.SetInteger("Transition", 1);
             }
@@ -49,9 +50,14 @@ public class PlayerAnim : MonoBehaviour
             transform.eulerAngles = new Vector2(0, 180);
         }
 
-        if(player.IsCutting)
+        if (player.IsCutting)
         {
             anim.SetInteger("Transition", 3);
+        }
+
+        if (player.IsDigging)
+        {
+            anim.SetInteger("Transition", 4);
         }
     }
 
