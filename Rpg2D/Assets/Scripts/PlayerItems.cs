@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerItems : MonoBehaviour
 {
     [SerializeField] private int woods;
+    public int carrots;
     public float currentWater;
     private float waterLimit = 50;
 
