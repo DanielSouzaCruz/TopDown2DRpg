@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private bool _isCutting;
     private bool _isDigging;
     private bool _isWatering;
-    private int handlingObject;
+    [HideInInspector] public int handlingObject;
 
     private Rigidbody2D rig;
     private PlayerItems playerItems;
