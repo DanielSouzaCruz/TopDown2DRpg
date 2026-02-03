@@ -9,6 +9,7 @@ public class InterfaceController : MonoBehaviour
     [SerializeField] private Image waterUIBar;
     [SerializeField] private Image carrotUIBar;
     [SerializeField] private Image woodUIBar;
+    [SerializeField] private Image fishUIBar;
 
     [Header("Tools")]
     public List<Image> toolsIcon = new List<Image>();
@@ -30,6 +31,7 @@ public class InterfaceController : MonoBehaviour
         waterUIBar.fillAmount = 0f;
         carrotUIBar.fillAmount = 0f;
         woodUIBar.fillAmount = 0f;
+        fishUIBar.fillAmount = 0f;
     }
 
     // Update is called once per frame
@@ -38,6 +40,7 @@ public class InterfaceController : MonoBehaviour
         waterUIBar.fillAmount = playerItems.currentWater / playerItems.WaterLimit;
         woodUIBar.fillAmount = playerItems.Woods / playerItems.WoodLimit;
         carrotUIBar.fillAmount = playerItems.carrots / playerItems.CarrotsLimit;
+        fishUIBar.fillAmount = playerItems.fishes / playerItems.FishesLimit;
 
         
 

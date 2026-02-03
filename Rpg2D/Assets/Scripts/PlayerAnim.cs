@@ -6,11 +6,14 @@ public class PlayerAnim : MonoBehaviour
 {
     private Player player;
     private Animator anim;
+    private Casting cast;
     
     void Start()
     {
         player = GetComponent<Player>();
         anim = GetComponent<Animator>();
+
+        cast = FindObjectOfType<Casting>();
     }
 
     
@@ -75,4 +78,16 @@ public class PlayerAnim : MonoBehaviour
     }
 
     #endregion
+
+    public void OnCastStart()
+    {
+        anim.SetTrigger("isCasting");
+        player.isPaused = true;
+    }
+
+    public void OnCastEnd()
+    {
+        cast.OnCasting();
+        player.isPaused = false;
+    }
 }
