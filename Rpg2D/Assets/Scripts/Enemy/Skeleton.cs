@@ -2,18 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Skeleton : MonoBehaviour
 {
-
+    [Header("Components")]
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private AnimationControl animControl;
+
+    [Header("Stats")]
+    public float currentHealth;
+    public float totalHealth;
+    public Image healthBar;
+    public bool isDead;
+    
+
 
     private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = totalHealth;
         player = FindObjectOfType<Player>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -22,26 +32,30 @@ public class Skeleton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(player.transform.position);
+        if (!isDead)
+        {
+            agent.SetDestination(player.transform.position);
 
-        if(Vector2.Distance(transform.position, player.transform.position) <= agent.stoppingDistance)
-        {
-            animControl.PlayAnim(1);
-        }
-        else
-        {
-            animControl.PlayAnim(2);
-        }
+            if (Vector2.Distance(transform.position, player.transform.position) <= agent.stoppingDistance)
+            {
+                animControl.PlayAnim(1);
+            }
+            else
+            {
+                animControl.PlayAnim(2);
+            }
 
-        float posX = player.transform.position.x - transform.position.x;
+            float posX = player.transform.position.x - transform.position.x;
 
-        if(posX > 0)
-        {
-            transform.eulerAngles = new Vector2(0, 0);
+            if (posX > 0)
+            {
+                transform.eulerAngles = new Vector2(0, 0);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector2(0, 180);
+            }
         }
-        else
-        {
-            transform.eulerAngles = new Vector2(0, 180);
-        }
+        
     }
 }

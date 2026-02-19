@@ -7,6 +7,14 @@ public class PlayerAnim : MonoBehaviour
     private Player player;
     private Animator anim;
     private Casting cast;
+    private bool isHitting;
+    private float timeCount;
+    private float recoveryTime = 1f;
+
+    [Header("Attack Settings")]
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float radius;
+    [SerializeField] private LayerMask enemyLayer;
     
     void Start()
     {
@@ -21,6 +29,19 @@ public class PlayerAnim : MonoBehaviour
     {
         OnMove();
         OnRun();
+        
+
+        if(isHitting)
+        {
+            timeCount += Time.deltaTime;
+            if (timeCount >= recoveryTime)
+            {
+                isHitting = false;
+                timeCount = 0;
+            }
+        }
+
+        
     }
 
 
@@ -79,6 +100,25 @@ public class PlayerAnim : MonoBehaviour
 
     #endregion
 
+    #region Attack
+
+    public void OnAttack()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, radius, enemyLayer);
+
+        if (hit != null)
+        {
+            hit.GetComponentInChildren<AnimationControl>().OnHit();
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, radius);
+    }
+
+    #endregion
+
     public void OnCastStart()
     {
         anim.SetTrigger("isCasting");
@@ -99,6 +139,16 @@ public class PlayerAnim : MonoBehaviour
     public void OnHammeringEnded()
     {
         anim.SetBool("isHammering", false);
+    }
+
+    public void OnHit()
+    {
+        if(!isHitting)
+        {
+            anim.SetTrigger("hit");
+            isHitting = true;
+        }
+        
     }
 
 }
