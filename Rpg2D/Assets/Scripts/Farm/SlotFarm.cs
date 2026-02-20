@@ -8,6 +8,9 @@ public class SlotFarm : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite hole;
     [SerializeField] private Sprite carrot;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip holeSfx;
+    [SerializeField] private AudioClip collectCarrotSfx;
 
     [Header("Settings")]
     [SerializeField] private int digLife;
@@ -17,6 +20,7 @@ public class SlotFarm : MonoBehaviour
     private float currentWater;
     private int initialDigLife;
     private bool existHole;
+    private bool carrotPlant;
 
     PlayerItems playterItems;
 
@@ -36,16 +40,21 @@ public class SlotFarm : MonoBehaviour
                 currentWater += 0.01f;
             }
 
-            if (currentWater >= waterAmount)
+            if (currentWater >= waterAmount && !carrotPlant)
             {
+                audioSource.PlayOneShot(holeSfx);
                 spriteRenderer.sprite = carrot;
+                carrotPlant = true;
 
-                if(Input.GetKeyDown(KeyCode.E))
-                {
-                    spriteRenderer.sprite = hole;
-                    playterItems.carrots++;
-                    currentWater = 0f;
-                }
+                
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && carrotPlant)
+            {
+                audioSource.PlayOneShot(collectCarrotSfx);
+                spriteRenderer.sprite = hole;
+                playterItems.carrots++;
+                currentWater = 0f;
             }
         }
         
